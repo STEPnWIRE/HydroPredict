@@ -1,0 +1,255 @@
+Build a complete beginner-friendly web prototype called "FLOODGUARD AI".
+
+This is a Smart India Hackathon prototype for the problem statement:
+
+"Flash Flood Prediction System for Hilly Regions using Multi-Source Data."
+
+IMPORTANT:
+This is a DEMO prototype using simulated data. Do not present the data as real operational flood predictions.
+
+I am a beginner and need the application to work without complicated setup.
+
+Create a beautiful, modern, professional disaster-management dashboard.
+
+DESIGN:
+- Dark modern dashboard
+- Professional blue/navy theme
+- Clean cards with rounded corners
+- Attractive but not excessive animations
+- Responsive on laptop and mobile
+- Use clear icons
+- Make it look like a real emergency-management command center
+- Project name: FLOODGUARD AI
+- Subtitle: Hyperlocal Flash-Flood Early Warning System
+
+MAIN DASHBOARD:
+
+Create a top navigation bar with:
+1. Dashboard
+2. Live Monitoring
+3. Risk Map
+4. Analytics
+5. Alerts
+
+Create a main dashboard containing:
+
+1. Overall Flood Risk card
+   - Risk score from 0 to 100
+   - LOW, MEDIUM, or HIGH
+   - Large visual indicator
+
+2. Rainfall card
+   - Rainfall in mm/hr
+
+3. Soil Moisture card
+   - Percentage
+
+4. River Level card
+   - River level in meters
+
+5. Terrain Risk card
+   - Slope in degrees
+
+6. Estimated Lead Time
+   - Show approximate time before critical conditions
+   - Example: 55 minutes
+
+RISK ENGINE:
+
+Create an interpretable simulated risk calculation.
+
+Use:
+- Rainfall contribution: 35%
+- Soil moisture contribution: 20%
+- River level contribution: 30%
+- Terrain/slope contribution: 15%
+
+Calculate a risk score between 0 and 100.
+
+Risk levels:
+0-39 = LOW
+40-69 = MEDIUM
+70-100 = HIGH
+
+The risk score must update dynamically whenever the simulated conditions change.
+
+CREATE THREE DEMO SCENARIO BUTTONS:
+
+1. NORMAL CONDITIONS
+Set approximately:
+Rainfall = 15 mm/hr
+Soil moisture = 35%
+River level = 1.2 m
+Slope risk = low
+
+Risk should become LOW.
+
+2. HEAVY RAIN
+Set approximately:
+Rainfall = 65 mm/hr
+Soil moisture = 72%
+River level = 2.8 m
+Slope risk = medium
+
+Risk should become MEDIUM.
+
+3. EXTREME FLOOD
+Set approximately:
+Rainfall = 120 mm/hr
+Soil moisture = 94%
+River level = 4.5 m
+Slope risk = high
+
+Risk should become HIGH.
+
+When EXTREME FLOOD is selected:
+- Show a large red warning panel
+- Show "FLASH FLOOD WARNING"
+- Show an estimated lead time around 55 minutes
+- Show "Begin evacuation toward designated shelter"
+- Make the warning visually prominent
+
+VILLAGE MAP:
+
+Create an interactive map using Leaflet if possible.
+
+Show at least 6 fictional/demo villages in a hilly region.
+
+Use colored markers:
+Green = low risk
+Yellow = medium risk
+Red = high risk
+
+Example villages:
+Village A
+Village B
+Village C
+Village D
+Village E
+Village F
+
+Clicking a village should show:
+- Village name
+- Risk level
+- Risk score
+- Rainfall
+- Soil moisture
+- River level
+- Slope
+- Estimated lead time
+
+Create a river line and several terrain/hill-style areas if practical.
+
+LIVE MONITORING:
+
+Create a section showing simulated sensor readings.
+
+Show:
+- Rainfall sensor
+- Soil moisture sensor
+- River-level sensor
+- Slope/terrain sensor
+
+Include status:
+ONLINE
+
+Create small charts showing recent changes in:
+- rainfall
+- river level
+- soil moisture
+
+ANALYTICS:
+
+Create charts for:
+- Rainfall trend
+- River level trend
+- Soil moisture trend
+
+Use demo historical data.
+
+AI RISK EXPLANATION:
+
+Create a panel called:
+"AI Risk Analysis"
+
+When risk is high, explain why.
+
+Example:
+
+HIGH FLOOD RISK DETECTED
+
+Primary contributing factors:
+- Extreme rainfall intensity
+- High soil saturation
+- Rapid river-level increase
+- Steep terrain
+
+Make the explanation update according to the current scenario.
+
+VILLAGE TABLE:
+
+Create a table with:
+Village
+Risk
+Rainfall
+River Level
+Soil Moisture
+Lead Time
+
+ALERT SYSTEM:
+
+Create an alerts section.
+
+For high risk:
+Show:
+"FLASH FLOOD WARNING"
+Affected village
+Risk score
+Estimated lead time
+Recommended action
+
+Add buttons:
+"SEND ALERT"
+"VIEW EVACUATION PLAN"
+
+These buttons can simulate the action and show a confirmation message.
+
+EVACUATION:
+
+Create a simple evacuation/shelter section.
+
+Show:
+High-risk village → designated shelter
+
+This can be simulated.
+
+IMPORTANT DEMO EXPERIENCE:
+
+The most important feature is the scenario simulation.
+
+When I click:
+NORMAL CONDITIONS
+the dashboard should become green.
+
+When I click:
+HEAVY RAIN
+the dashboard should become yellow.
+
+When I click:
+EXTREME FLOOD
+the dashboard should become red, show a high-risk score, show the warning, and show estimated lead time.
+
+Make the transition visually impressive.
+
+TECHNICAL REQUIREMENTS:
+
+- Make the application actually runnable.
+- Do not leave placeholder buttons that do nothing.
+- All scenario buttons must work.
+- Risk score must update.
+- Map markers should update according to scenario.
+- Charts should update when scenario changes if practical.
+- Avoid unnecessary authentication or complicated database setup.
+- Use simulated data only.
+- Add a small footer:
+"Prototype / Simulated Data — Not for real-world emergency decisions."

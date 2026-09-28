@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "FLOODGUARD AI"
+description = "A responsive Smart India Hackathon prototype for exploring simulated flash-flood risk across fictional hilly villages, with scenario controls, risk explanations, village monitoring, maps, analytics, and alerts."
+version = "1.0.0"
+id = "artifacts/floodguard-ai"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20744
+
+[services.development]
+run = "pnpm --filter @workspace/floodguard-ai run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/floodguard-ai", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/floodguard-ai/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20744"
+BASE_PATH = "/"
