@@ -1050,6 +1050,52 @@ button:focus-visible {
     hsl(var(--card));
 }
 
+.pilot-region {
+  display: grid;
+  grid-template-columns: auto minmax(230px, .8fr) minmax(300px, 1.2fr);
+  gap: 13px;
+  align-items: center;
+  margin-bottom: 14px;
+  padding: 13px 15px;
+  border: 1px solid hsl(var(--primary) / .24);
+  border-radius: 10px;
+  background:
+    linear-gradient(90deg, hsl(var(--primary) / .1), transparent 70%),
+    hsl(var(--card) / .9);
+  box-shadow: 0 8px 24px hsl(215 45% 3% / .12);
+}
+
+.pilot-region-icon {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid hsl(var(--primary) / .3);
+  border-radius: 8px;
+  color: hsl(var(--primary));
+  background: hsl(var(--primary) / .12);
+}
+
+.pilot-region-copy .panel-kicker {
+  color: hsl(var(--primary));
+}
+
+.pilot-region-copy h2 {
+  margin: 3px 0 0;
+  color: hsl(var(--foreground));
+  font: 700 13px var(--app-font-display);
+  letter-spacing: -.015em;
+}
+
+.pilot-region p {
+  margin: 0;
+  padding-left: 13px;
+  border-left: 1px solid hsl(var(--border));
+  color: hsl(var(--muted-foreground));
+  font-size: 9px;
+  line-height: 1.55;
+}
+
 .explainable-panel .panel-head {
   align-items: flex-start;
 }
@@ -1212,6 +1258,18 @@ button:focus-visible {
 }
 
 @media (max-width: 820px) {
+  .pilot-region {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .pilot-region p {
+    grid-column: 1 / -1;
+    padding: 9px 0 0;
+    border-top: 1px solid hsl(var(--border));
+    border-left: 0;
+  }
+
   .explainable-intro {
     align-items: flex-start;
     flex-direction: column;

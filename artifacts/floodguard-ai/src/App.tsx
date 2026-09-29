@@ -19,6 +19,7 @@ import {
   LayoutDashboard,
   LifeBuoy,
   Map,
+  MapPin,
   Menu,
   Mountain,
   Navigation,
@@ -374,6 +375,15 @@ function Home() {
             <div><div className="eyebrow">Situation room / 06 June 2025</div><h1 className="page-title">Good afternoon, Modish.</h1><p className="page-subtitle">A focused view of catchment conditions, exposed villages, and the next decision window.</p></div>
             <div className="timestamp">LAST SYNCHRONIZED<b>14:32:08 IST</b></div>
           </div>
+
+          <section className="pilot-region" aria-label="Pilot Region">
+            <div className="pilot-region-icon"><MapPin size={16} /></div>
+            <div className="pilot-region-copy">
+              <div className="panel-kicker">Pilot Region</div>
+              <h2>Northeast India — Demonstration Area</h2>
+            </div>
+            <p>Prototype demonstration using simulated data. The production system would integrate real rainfall, soil moisture, river-level, terrain, historical disaster and IoT data.</p>
+          </section>
 
           <section className="scenario-bar" aria-label="Scenario simulation">
             <div className="scenario-copy"><CloudLightning size={16} /><div>Scenario simulation <span>Local demo controls · not a forecast</span></div></div>
