@@ -248,6 +248,7 @@ function Home() {
     year: 'numeric',
   }).format(currentTime);
   const simulationTime = formatSimulationTime(currentTime);
+  const greeting = currentTime.getHours() < 12 ? 'Good morning, Modish' : 'Good afternoon, Modish';
   const riskScore = calculateRisk(data.conditions);
   const riskBandLabel = riskBand(riskScore);
   const explainableReasons = useMemo(() => {
@@ -392,7 +393,7 @@ function Home() {
 
         <main className="dashboard" id="overview">
           <div className="page-intro">
-            <div><div className="eyebrow">Situation room / {simulationDate} • Live Simulation</div><div className="simulation-label">SIMULATED DATA — PROTOTYPE</div><h1 className="page-title">Good afternoon, Modish.</h1><p className="page-subtitle">A focused view of catchment conditions, exposed villages, and the next decision window.</p></div>
+            <div><div className="eyebrow">Situation room / {simulationDate} • Live Simulation</div><div className="simulation-label">SIMULATED DATA — PROTOTYPE</div><h1 className="page-title">{greeting}</h1><p className="page-subtitle">A focused view of catchment conditions, exposed villages, and the next decision window.</p></div>
             <div className="timestamp">LAST SYNCHRONIZED<b>{simulationTime}</b></div>
           </div>
 
