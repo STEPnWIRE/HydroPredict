@@ -313,7 +313,7 @@ function Home() {
 
         <main className="dashboard" id="overview">
           <div className="page-intro">
-            <div><div className="eyebrow">Situation room / 06 June 2025</div><h1 className="page-title">Good afternoon, Aarav.</h1><p className="page-subtitle">A focused view of catchment conditions, exposed villages, and the next decision window.</p></div>
+            <div><div className="eyebrow">Situation room / 06 June 2025</div><h1 className="page-title">Good afternoon, Modish.</h1><p className="page-subtitle">A focused view of catchment conditions, exposed villages, and the next decision window.</p></div>
             <div className="timestamp">LAST SYNCHRONIZED<b>14:32:08 IST</b></div>
           </div>
 
