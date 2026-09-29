@@ -1,0 +1,181 @@
+Redesign the existing FLOODGUARD AI website UI to look like a professional REAL-WORLD DISASTER MANAGEMENT AND EARLY WARNING COMMAND CENTER, not a generic AI/SaaS website.
+
+IMPORTANT: Keep ALL existing functionality, pages, data, scenario buttons, charts, maps, risk calculations, alerts, and interactions working exactly as they currently do. Only redesign the visual appearance and UI styling.
+
+### COLOR SYSTEM
+
+Replace the current blue-heavy theme with a dark graphite/earth-tone emergency operations theme:
+
+- Main background: #0D1110
+- Cards/panels: #151A18
+- Elevated cards: #1B211E
+- Borders: subtle #29312D
+- Primary accent: muted amber/orange #D99A3D
+- Primary text: #F1F3F2
+- Secondary text: #9AA39E
+- Low risk: #4CAF72
+- Medium risk: #E0A83E
+- High risk: #E05252
+
+Use amber/orange mainly for important actions, active navigation, selected states, warnings, and key system indicators.
+
+Do NOT make the whole website orange.
+
+### REMOVE THE "GENERIC AI WEBSITE" LOOK
+
+Avoid:
+- Blue/purple gradients
+- Neon cyan glowing effects
+- Excessive glassmorphism
+- Excessive rounded cards
+- Artificial AI glow effects
+- Futuristic decorative graphics
+- Random AI-style gradients
+- Excessive shadows
+- Overly colorful UI
+
+The design should feel like software used by emergency responders, disaster-management authorities, field operators, and monitoring teams.
+
+### VISUAL STYLE
+
+Use:
+- Dark graphite background
+- Strong visual hierarchy
+- Clean rectangular/softly rounded panels
+- Thin subtle borders
+- Compact information cards
+- Clear data visualization
+- Professional map interface
+- Operational/status indicators
+- Minimal decoration
+- High information density without feeling cluttered
+
+Think "emergency operations center" rather than "AI startup landing page."
+
+### TYPOGRAPHY
+
+Continue using:
+- Inter for headings, navigation, numbers, buttons, and important metrics
+- Roboto for body text, descriptions, tables, and supporting information
+
+Use strong typography for:
+- Risk Score
+- River Level
+- Rainfall
+- Soil Moisture
+- Estimated Lead Time
+- Village Risk
+
+### RISK COLORS
+
+Risk colors must remain immediately recognizable:
+
+LOW → green
+MEDIUM → amber/yellow
+HIGH → red
+
+Do not replace these with the new accent color.
+
+Make HIGH RISK visually prominent, but do not make the entire interface red.
+
+### HEADER
+
+Create a professional command-center header.
+
+Show:
+
+FLOODGUARD AI
+Hyperlocal Flash-Flood Early Warning System
+
+Add a small operational status indicator such as:
+
+● SYSTEM ONLINE
+
+Use amber as the subtle brand accent.
+
+### DASHBOARD
+
+Make the dashboard feel like an operational monitoring console.
+
+The first screen should immediately communicate:
+
+1. Overall Risk
+2. Rainfall
+3. Soil Moisture
+4. River Level
+5. Terrain Risk
+6. Estimated Lead Time
+
+Make the Overall Risk and Lead Time visually important.
+
+### MAP
+
+The Risk Map should be one of the strongest visual elements.
+
+Use a dark map style if possible.
+
+Village markers should clearly use:
+
+Green = Low
+Yellow/Amber = Medium
+Red = High
+
+Do not use blue markers unless they represent a neutral/non-risk location.
+
+### CHARTS
+
+Restyle charts to match the dark graphite theme.
+
+Use restrained colors and strong contrast.
+
+Do not use colorful rainbow charts or neon gradients.
+
+Charts should look like professional environmental monitoring graphs.
+
+### ALERTS
+
+Make the Alerts section look like an emergency operations panel.
+
+A high-risk alert should clearly display:
+
+FLASH FLOOD WARNING
+Affected Village
+Risk Level
+Risk Score
+Estimated Lead Time
+Recommended Action
+
+The alert should be visually urgent but professional.
+
+### SCENARIO SIMULATION
+
+Keep the existing:
+
+NORMAL
+HEAVY RAIN
+EXTREME FLOOD
+
+scenario buttons.
+
+Style them as operational simulation controls rather than decorative buttons.
+
+Clearly label the system:
+
+SIMULATION MODE
+DATA: SIMULATED / PROTOTYPE
+
+### OVERALL FEEL
+
+The final website should feel like:
+
+"An emergency management and environmental monitoring system that happens to use AI"
+
+NOT:
+
+"An AI website with a flood theme."
+
+It should look credible for a Smart India Hackathon technical demonstration.
+
+Prioritize usability, readability, hierarchy, and operational clarity over visual effects.
+
+Make the redesign polished, consistent, responsive, and presentation-ready.
