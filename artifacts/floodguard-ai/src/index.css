@@ -1065,6 +1065,18 @@ button:focus-visible {
   box-shadow: 0 8px 24px hsl(215 45% 3% / .12);
 }
 
+.simulation-label {
+  display: inline-flex;
+  margin-top: 8px;
+  padding: 4px 7px;
+  border: 1px solid hsl(var(--accent) / .28);
+  border-radius: 4px;
+  color: hsl(var(--accent));
+  background: hsl(var(--accent) / .08);
+  font: 700 8px var(--app-font-mono);
+  letter-spacing: .08em;
+}
+
 .pilot-region-icon {
   display: grid;
   width: 32px;

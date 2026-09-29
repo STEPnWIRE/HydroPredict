@@ -1,4 +1,4 @@
-import { useMemo, useState, type CSSProperties } from 'react';
+import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import { Area, AreaChart, CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { motion } from 'framer-motion';
 import {
@@ -218,6 +218,15 @@ const riskBand = (score: number) => (score >= 70 ? 'HIGH' : score >= 40 ? 'MEDIU
 
 type RiskReasonKey = 'rainfall' | 'soil' | 'river' | 'slope';
 
+const formatSimulationTime = (date: Date) =>
+  new Intl.DateTimeFormat('en-IN', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+    timeZoneName: 'short',
+  }).format(date);
+
 function Home() {
   const [scenario, setScenario] = useState<Scenario>('normal');
   const [activeNav, setActiveNav] = useState('overview');
@@ -227,7 +236,18 @@ function Home() {
   const [feedback, setFeedback] = useState('');
   const [refreshing, setRefreshing] = useState(false);
   const [selectedVillage, setSelectedVillage] = useState<Village | null>(null);
+  const [currentTime, setCurrentTime] = useState(() => new Date());
   const data = scenarios[scenario];
+  useEffect(() => {
+    const timer = window.setInterval(() => setCurrentTime(new Date()), 1000);
+    return () => window.clearInterval(timer);
+  }, []);
+  const simulationDate = new Intl.DateTimeFormat('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(currentTime);
+  const simulationTime = formatSimulationTime(currentTime);
   const riskScore = calculateRisk(data.conditions);
   const riskBandLabel = riskBand(riskScore);
   const explainableReasons = useMemo(() => {
@@ -323,7 +343,7 @@ function Home() {
     setRefreshing(true);
     window.setTimeout(() => {
       setRefreshing(false);
-      showFeedback('Demo sensor snapshot refreshed at 14:32:08.');
+      showFeedback(`Demo sensor snapshot refreshed at ${formatSimulationTime(new Date())}.`);
     }, 700);
   };
 
@@ -372,8 +392,8 @@ function Home() {
 
         <main className="dashboard" id="overview">
           <div className="page-intro">
-            <div><div className="eyebrow">Situation room / 06 June 2025</div><h1 className="page-title">Good afternoon, Modish.</h1><p className="page-subtitle">A focused view of catchment conditions, exposed villages, and the next decision window.</p></div>
-            <div className="timestamp">LAST SYNCHRONIZED<b>14:32:08 IST</b></div>
+            <div><div className="eyebrow">Situation room / {simulationDate} • Live Simulation</div><div className="simulation-label">SIMULATED DATA — PROTOTYPE</div><h1 className="page-title">Good afternoon, Modish.</h1><p className="page-subtitle">A focused view of catchment conditions, exposed villages, and the next decision window.</p></div>
+            <div className="timestamp">LAST SYNCHRONIZED<b>{simulationTime}</b></div>
           </div>
 
           <section className="pilot-region" aria-label="Pilot Region">
@@ -508,7 +528,7 @@ function Home() {
               <div className="panel-kicker">Responder action / local only</div><h2 className="panel-title">{scenario === 'extreme' ? 'Flash flood protocol' : 'Alert actions'}</h2><p className="alert-copy">{scenario === 'extreme' ? 'The selected simulation crosses the emergency threshold. Confirming will create a local demo alert and show the recommended evacuation direction.' : 'Use the simulation to rehearse alerting flows. Nothing is sent to residents or external systems.'}</p>
               {scenario === 'extreme' && <div className="flash-warning"><Siren size={18} /><div><strong>FLASH FLOOD WARNING</strong><span>Begin evacuation toward designated shelter · response window {data.leadTime}</span></div></div>}
               <div className="alert-actions"><button type="button" className="solid-btn" data-testid="button-simulate-alert" onClick={() => setAlertConfirm(true)}><Siren size={14} /> SEND ALERT</button><button type="button" className="outline-btn" data-testid="button-evacuation-direction" onClick={() => navigateTo('shelters')}><Navigation size={14} /> VIEW EVACUATION PLAN</button></div>
-              {alertSent && <div className="feedback" data-testid="status-alert-confirmed"><CheckCircle2 size={13} style={{ verticalAlign: 'middle', marginRight: 5 }} />Demo alert confirmed at 14:32 IST. Response team notified locally.</div>}
+              {alertSent && <div className="feedback" data-testid="status-alert-confirmed"><CheckCircle2 size={13} style={{ verticalAlign: 'middle', marginRight: 5 }} />Demo alert confirmed at {simulationTime}. Response team notified locally.</div>}
               {feedback && !alertSent && <div className="feedback" data-testid="status-feedback">{feedback}</div>}
             </section>
           </div>
