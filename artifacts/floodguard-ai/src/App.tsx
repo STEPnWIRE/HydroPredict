@@ -215,6 +215,8 @@ const calculateRisk = ({ rainfall, soil, river, slope }: Conditions) =>
 
 const riskBand = (score: number) => (score >= 70 ? 'HIGH' : score >= 40 ? 'MEDIUM' : 'LOW');
 
+type RiskReasonKey = 'rainfall' | 'soil' | 'river' | 'slope';
+
 function Home() {
   const [scenario, setScenario] = useState<Scenario>('normal');
   const [activeNav, setActiveNav] = useState('overview');
@@ -227,6 +229,62 @@ function Home() {
   const data = scenarios[scenario];
   const riskScore = calculateRisk(data.conditions);
   const riskBandLabel = riskBand(riskScore);
+  const explainableReasons = useMemo(() => {
+    const { rainfall, soil, river, slope } = data.conditions;
+    const reasons: Array<{
+      key: RiskReasonKey;
+      label: string;
+      value: string;
+      severity: number;
+      contribution: number;
+      text: string;
+      icon: ReactNode;
+      color: string;
+    }> = [
+      {
+        key: 'rainfall',
+        label: 'Rainfall intensity',
+        value: `${data.rainfall} mm/hr`,
+        severity: clamp(rainfall / 120 * 100),
+        contribution: clamp(rainfall / 120 * 100) * 0.35,
+        text: rainfall >= 90 ? 'Rainfall intensity is extremely high.' : rainfall >= 40 ? 'Rainfall intensity is elevated across the catchment.' : 'Rainfall intensity is within a manageable range.',
+        icon: <CloudRain size={15} />,
+        color: '#2f9eb5',
+      },
+      {
+        key: 'soil',
+        label: 'Soil moisture',
+        value: `${data.soil}%`,
+        severity: clamp(soil),
+        contribution: clamp(soil) * 0.2,
+        text: soil >= 85 ? 'Soil moisture is close to saturation.' : soil >= 60 ? 'Soil moisture is rising and reducing ground absorption.' : 'Soil moisture remains below saturation levels.',
+        icon: <Droplets size={15} />,
+        color: '#c39138',
+      },
+      {
+        key: 'river',
+        label: 'River level',
+        value: `${data.river} m`,
+        severity: clamp(river / 4.5 * 100),
+        contribution: clamp(river / 4.5 * 100) * 0.3,
+        text: river >= 3.8 ? 'River level is rising rapidly toward critical range.' : river >= 2 ? 'River level is elevated and responding to runoff.' : 'River level is stable with room below the alert threshold.',
+        icon: <Activity size={15} />,
+        color: '#4d82c0',
+      },
+      {
+        key: 'slope',
+        label: 'Terrain slope',
+        value: `${data.slope}°`,
+        severity: clamp(slope / 45 * 100),
+        contribution: clamp(slope / 45 * 100) * 0.15,
+        text: slope >= 32 ? 'Steep terrain increases runoff and slope exposure.' : slope >= 18 ? 'Moderate slopes can accelerate runoff in heavy rain.' : 'Terrain exposure is currently limited.',
+        icon: <Mountain size={15} />,
+        color: '#8b74bf',
+      },
+    ];
+
+    return reasons.sort((a, b) => b.contribution - a.contribution).slice(0, 3);
+  }, [data]);
   const trendData = useMemo(
     () =>
       data.chart.map((point) => ({
@@ -374,6 +432,44 @@ function Home() {
               <div className="confidence"><span>SIMULATION CONFIDENCE <strong>{scenario === 'normal' ? '92%' : scenario === 'heavy' ? '78%' : '71%'}</strong></span><span>Updated with scenario</span></div>
             </section>
           </div>
+
+          <motion.section
+            key={`explainable-${scenario}`}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: .3 }}
+            className="panel explainable-panel"
+            data-testid="panel-explainable-risk"
+          >
+            <div className="panel-head">
+              <div>
+                <div className="panel-kicker">Decision support / transparent signals</div>
+                <h2 className="panel-title">Explainable Risk</h2>
+                <div className="panel-note">Top three contributors from the simulated sensor snapshot</div>
+              </div>
+              <div className={`explainable-score score-${riskBandLabel.toLowerCase()}`}>
+                <strong>{riskScore}</strong>
+                <span>{riskBandLabel} RISK</span>
+              </div>
+            </div>
+            <div className="explainable-intro">
+              <h3>WHY IS THE RISK {riskBandLabel}?</h3>
+              <p>These are the strongest signals behind the current simulated assessment.</p>
+            </div>
+            <div className="risk-reason-list">
+              {explainableReasons.map((reason, index) => (
+                <div className="risk-reason" key={reason.key}>
+                  <div className="reason-rank">{index + 1}</div>
+                  <div className="reason-icon" style={{ color: reason.color, background: `${reason.color}18` }}>{reason.icon}</div>
+                  <div className="reason-body">
+                    <div className="reason-head"><strong>{reason.label}</strong><span>{reason.value}</span></div>
+                    <p>{reason.text}</p>
+                    <div className="reason-track" aria-label={`${reason.label} indicator`}><span style={{ width: `${Math.max(8, reason.severity)}%`, background: reason.color }} /></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.section>
 
           <section className="trend-grid" aria-label="Signal trends">
             {[
