@@ -271,7 +271,7 @@ function Home() {
   const cssRisk = { '--risk-color': data.color } as CSSProperties;
 
   return (
-    <div className="app-shell" style={cssRisk}>
+    <div className={`app-shell ${riskBandLabel === 'HIGH' ? 'high-risk-mode' : ''}`} style={cssRisk} data-risk-band={riskBandLabel.toLowerCase()}>
       <aside className="sidebar">
         <div className="brand">
           <div className="brand-mark"><WavesIcon /></div>
