@@ -1434,3 +1434,270 @@ select {
 .risk-summary h3 {
   font-weight: 800;
 }
+
+/* Emergency operations visual system */
+:root {
+  --background: 150 13% 6%;
+  --foreground: 140 10% 95%;
+  --border: 144 9% 17%;
+  --input: 144 9% 17%;
+  --ring: 37 66% 55%;
+  --card: 150 10% 9%;
+  --card-foreground: 140 10% 95%;
+  --card-border: 144 9% 17%;
+  --popover: 150 10% 10%;
+  --popover-foreground: 140 10% 95%;
+  --primary: 37 66% 55%;
+  --primary-foreground: 150 13% 6%;
+  --secondary: 145 10% 13%;
+  --secondary-foreground: 140 10% 95%;
+  --muted: 145 9% 14%;
+  --muted-foreground: 140 8% 62%;
+  --accent: 37 66% 55%;
+  --accent-foreground: 150 13% 6%;
+  --destructive: 0 69% 60%;
+  --destructive-foreground: 140 10% 95%;
+  --sidebar: 150 13% 7%;
+  --sidebar-foreground: 140 10% 91%;
+  --sidebar-border: 144 9% 17%;
+  --sidebar-primary: 37 66% 55%;
+  --sidebar-primary-foreground: 150 13% 6%;
+  --sidebar-accent: 145 10% 13%;
+  --sidebar-accent-foreground: 140 10% 95%;
+  --sidebar-ring: 37 66% 55%;
+}
+
+body {
+  background: #0D1110;
+  color: #F1F3F2;
+}
+
+.app-shell {
+  background:
+    linear-gradient(90deg, hsl(37 66% 55% / .018) 1px, transparent 1px),
+    linear-gradient(hsl(37 66% 55% / .018) 1px, transparent 1px),
+    #0D1110;
+  background-size: 48px 48px;
+}
+
+.sidebar {
+  background: linear-gradient(180deg, #151A18, #0D1110);
+  border-right-color: #29312D;
+  box-shadow: 12px 0 32px rgb(0 0 0 / .2);
+}
+
+.brand-mark {
+  color: #D99A3D;
+  border-color: rgb(217 154 61 / .45);
+  background: rgb(217 154 61 / .1);
+  box-shadow: inset 0 0 18px rgb(217 154 61 / .05);
+}
+
+.brand-sub {
+  max-width: 170px;
+  line-height: 1.35;
+  color: rgb(241 243 242 / .48);
+}
+
+.nav-item.active {
+  color: #D99A3D;
+  background: linear-gradient(90deg, rgb(217 154 61 / .16), rgb(217 154 61 / .035));
+  border-color: rgb(217 154 61 / .17);
+  box-shadow: inset 2px 0 #D99A3D, 0 6px 18px rgb(0 0 0 / .14);
+}
+
+.demo-chip svg {
+  color: #D99A3D;
+}
+
+.topbar {
+  background: rgb(13 17 16 / .9);
+  border-bottom-color: #29312D;
+  box-shadow: 0 5px 20px rgb(0 0 0 / .16);
+}
+
+.live-state {
+  color: #9AA39E;
+}
+
+.live-dot {
+  background: #4CAF72;
+}
+
+.icon-btn:hover,
+.outline-btn:hover {
+  color: #D99A3D;
+  background: #1B211E;
+}
+
+.panel,
+.scenario-bar,
+.metric-card,
+.pilot-region {
+  background: #151A18;
+  border-color: #29312D;
+  border-radius: 7px;
+  box-shadow: 0 6px 18px rgb(0 0 0 / .12);
+}
+
+.scenario-bar {
+  background: #1B211E;
+}
+
+.scenario-copy svg,
+.scenario-btn.selected {
+  color: #D99A3D;
+}
+
+.scenario-btn.selected {
+  background: rgb(217 154 61 / .1);
+  border-color: rgb(217 154 61 / .35);
+}
+
+.scenario-btn.danger.selected {
+  color: #E05252;
+  background: rgb(224 82 82 / .1);
+  border-color: rgb(224 82 82 / .35);
+}
+
+.pilot-region {
+  background: linear-gradient(90deg, rgb(217 154 61 / .07), transparent 70%), #151A18;
+  border-color: rgb(217 154 61 / .3);
+}
+
+.pilot-region-icon,
+.ai-head-icon {
+  color: #D99A3D;
+  border-color: rgb(217 154 61 / .35);
+  background: rgb(217 154 61 / .1);
+}
+
+.pilot-region-copy .panel-kicker,
+.simulation-label {
+  color: #D99A3D;
+}
+
+.simulation-label {
+  border-color: rgb(217 154 61 / .35);
+  background: rgb(217 154 61 / .08);
+}
+
+.map-canvas {
+  border-color: #29312D;
+  background: #18211D;
+}
+
+.map-canvas::after {
+  background-image:
+    linear-gradient(rgb(217 154 61 / .07) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(217 154 61 / .07) 1px, transparent 1px);
+}
+
+.map-water {
+  background: #34463C;
+  opacity: .72;
+}
+
+.map-water.w2 {
+  background: #405549;
+}
+
+.ridge {
+  border-top-color: rgb(154 163 158 / .48);
+}
+
+.map-label {
+  color: rgb(241 243 242 / .58);
+}
+
+.marker-label {
+  color: #F1F3F2;
+  background: rgb(21 26 24 / .92);
+  border: 1px solid #29312D;
+}
+
+.map-legend {
+  color: #F1F3F2;
+  background: rgb(21 26 24 / .92);
+  border: 1px solid #29312D;
+}
+
+.legend-dot.safe,
+.status-safe {
+  color: #4CAF72;
+}
+
+.legend-dot.safe {
+  background: #4CAF72;
+}
+
+.legend-dot.watch,
+.status-watch {
+  color: #E0A83E;
+}
+
+.legend-dot.watch {
+  background: #E0A83E;
+}
+
+.legend-dot.high,
+.status-high {
+  color: #E05252;
+}
+
+.legend-dot.high {
+  background: #E05252;
+}
+
+.status-safe {
+  background: rgb(76 175 114 / .12);
+}
+
+.status-watch {
+  background: rgb(224 168 62 / .12);
+}
+
+.status-high {
+  background: rgb(224 82 82 / .12);
+}
+
+.warning-card {
+  border-color: rgb(224 82 82 / .45);
+  background: linear-gradient(135deg, rgb(224 82 82 / .12), rgb(224 82 82 / .025));
+}
+
+.warning-card .panel-kicker,
+.warning-card .panel-title {
+  color: #E05252;
+}
+
+.flash-warning {
+  color: #F1F3F2;
+  background: rgb(224 82 82 / .1);
+  border-color: rgb(224 82 82 / .32);
+}
+
+.solid-btn {
+  color: #0D1110;
+  background: #D99A3D;
+  border-color: #D99A3D;
+}
+
+.solid-btn:hover {
+  background: #E0A83E;
+}
+
+.alert-actions .solid-btn {
+  color: #0D1110;
+  background: #D99A3D;
+  border-color: #D99A3D;
+}
+
+.alert-actions .solid-btn:hover {
+  background: #E0A83E;
+}
+
+.footer,
+.footer-right {
+  border-top-color: #29312D;
+}

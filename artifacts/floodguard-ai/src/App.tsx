@@ -84,7 +84,7 @@ const scenarios: Record<Scenario, ScenarioData> = {
     label: 'Normal conditions',
     risk: 18,
     level: 'LOW RISK',
-    color: '#328d74',
+    color: '#4CAF72',
     leadTime: '—',
     rainfall: '15',
     rainfallChange: 'within seasonal range',
@@ -120,7 +120,7 @@ const scenarios: Record<Scenario, ScenarioData> = {
     label: 'Heavy rain',
     risk: 61,
     level: 'MEDIUM RISK',
-    color: '#b67b1b',
+    color: '#E0A83E',
     leadTime: '2h 18m',
     rainfall: '65',
     rainfallChange: '+42.1 mm in 3 hours',
@@ -156,7 +156,7 @@ const scenarios: Record<Scenario, ScenarioData> = {
     label: 'Extreme flood',
     risk: 94,
     level: 'HIGH RISK',
-    color: '#ca5045',
+    color: '#E05252',
     leadTime: '55 min',
     rainfall: '120',
     rainfallChange: '+96.2 mm in 3 hours',
@@ -354,7 +354,7 @@ function Home() {
       <aside className="sidebar">
         <div className="brand">
           <div className="brand-mark"><WavesIcon /></div>
-          <div><div className="brand-name">FLOODGUARD AI</div><div className="brand-sub">District command center</div></div>
+          <div><div className="brand-name">FLOODGUARD AI</div><div className="brand-sub">Hyperlocal Flash-Flood Early Warning System</div></div>
         </div>
         <div className="nav-label">Workspace</div>
         <nav className="nav-list" aria-label="Primary navigation">
@@ -387,7 +387,7 @@ function Home() {
       <div className="main-wrap">
         <header className="topbar">
           <div className="crumb"><button type="button" className="icon-btn mobile-menu" data-testid="button-open-menu" onClick={() => setMobileOpen(true)}><Menu size={17} /></button><span>Himachal district /</span><strong>Rampur response desk</strong></div>
-          <div className="top-actions"><div className="live-state"><i className="live-dot" /> demo feeds operational</div><button type="button" className="icon-btn" aria-label="Refresh simulated readings" data-testid="button-refresh" onClick={refreshData}><RefreshCw size={14} className={refreshing ? 'spin' : ''} /></button><button type="button" className="icon-btn" aria-label="Open alert center" data-testid="button-notifications" onClick={() => setAlertConfirm(true)}><Bell size={14} /></button></div>
+          <div className="top-actions"><div className="live-state"><i className="live-dot" /> SYSTEM ONLINE</div><button type="button" className="icon-btn" aria-label="Refresh simulated readings" data-testid="button-refresh" onClick={refreshData}><RefreshCw size={14} className={refreshing ? 'spin' : ''} /></button><button type="button" className="icon-btn" aria-label="Open alert center" data-testid="button-notifications" onClick={() => setAlertConfirm(true)}><Bell size={14} /></button></div>
         </header>
 
         <main className="dashboard" id="overview">
@@ -406,7 +406,7 @@ function Home() {
           </section>
 
           <section className="scenario-bar" aria-label="Scenario simulation">
-            <div className="scenario-copy"><CloudLightning size={16} /><div>Scenario simulation <span>Local demo controls · not a forecast</span></div></div>
+            <div className="scenario-copy"><CloudLightning size={16} /><div>SIMULATION MODE <span>DATA: SIMULATED / PROTOTYPE</span></div></div>
             <div className="scenario-buttons">
               <button type="button" className={`scenario-btn ${scenario === 'normal' ? 'selected' : ''}`} data-testid="button-scenario-normal" onClick={() => selectScenario('normal')}>Normal conditions</button>
               <button type="button" className={`scenario-btn ${scenario === 'heavy' ? 'selected' : ''}`} data-testid="button-scenario-heavy" onClick={() => selectScenario('heavy')}>Heavy rain</button>
@@ -433,7 +433,7 @@ function Home() {
               <div className="map-canvas" data-testid="map-risk-canvas">
                 <div className="map-water w1" /><div className="map-water w2" /><div className="ridge r1" /><div className="ridge r2" /><div className="ridge r3" />
                 <span className="map-label l1">upper catchment</span><span className="map-label l2">river kosi</span><span className="map-label l3">ridge line</span>
-                {data.villages.map((village) => <button type="button" key={village.id} className="map-marker" aria-label={`Inspect ${village.name}`} onClick={() => setSelectedVillage(village)} style={{ left: village.marker.left, top: village.marker.top, '--marker-color': village.status === 'High risk' ? '#ca5045' : village.status === 'Watch' ? '#b67b1b' : '#328d74' } as CSSProperties}><div className="marker-core" /><span className="marker-label">{village.name}</span></button>)}
+                {data.villages.map((village) => <button type="button" key={village.id} className="map-marker" aria-label={`Inspect ${village.name}`} onClick={() => setSelectedVillage(village)} style={{ left: village.marker.left, top: village.marker.top, '--marker-color': village.status === 'High risk' ? '#E05252' : village.status === 'Watch' ? '#E0A83E' : '#4CAF72' } as CSSProperties}><div className="marker-core" /><span className="marker-label">{village.name}</span></button>)}
                 <div className="map-legend"><span className="legend-item"><i className="legend-dot safe" /> safe</span><span className="legend-item"><i className="legend-dot watch" /> watch</span><span className="legend-item"><i className="legend-dot high" /> high risk</span></div>
               </div>
               {selectedVillage && <div className="map-inspector"><div><div className="panel-kicker">Selected demo village</div><strong>{selectedVillage.name}</strong><span className={`status-pill ${statusClass(selectedVillage.status)}`}>{selectedVillage.status}</span></div><div className="inspector-grid"><span>Risk score <b>{clamp(riskScore + Math.round((selectedVillage.water - 60) / 4))}</b></span><span>Rainfall <b>{data.rainfall} mm/hr</b></span><span>Soil moisture <b>{data.soil}%</b></span><span>River level <b>{data.river} m</b></span><span>Slope <b>{data.slope}°</b></span><span>Lead time <b>{selectedVillage.eta}</b></span></div></div>}
@@ -442,17 +442,17 @@ function Home() {
           </motion.div>
 
           <div className="metrics-grid">
-            <Metric icon={<CloudRain size={14} />} label="3h rainfall" value={data.rainfall} unit="mm" change={data.rainfallChange} color="#2e8c91" />
-            <Metric icon={<Droplets size={14} />} label="River Kosi" value={data.river} unit="m" change={data.riverChange} color="#4b83a0" />
-            <Metric icon={<Mountain size={14} />} label="Soil saturation" value={data.soil} unit="%" change={data.soilChange} color="#a97829" />
-            <Metric icon={<Mountain size={14} />} label="Terrain slope" value={data.slope} unit="°" change={data.slopeChange} color="#8470a4" />
+            <Metric icon={<CloudRain size={14} />} label="3h rainfall" value={data.rainfall} unit="mm" change={data.rainfallChange} color="#D99A3D" />
+            <Metric icon={<Droplets size={14} />} label="River Kosi" value={data.river} unit="m" change={data.riverChange} color="#8AA89C" />
+            <Metric icon={<Mountain size={14} />} label="Soil saturation" value={data.soil} unit="%" change={data.soilChange} color="#B8A97D" />
+            <Metric icon={<Mountain size={14} />} label="Terrain slope" value={data.slope} unit="°" change={data.slopeChange} color="#788B80" />
           </div>
 
           <div className="section-grid" id="analytics">
             <section className="panel">
               <div className="panel-head"><div><div className="panel-kicker">Signal history / simulated</div><h2 className="panel-title">Risk trajectory</h2></div><div className="panel-note">Last 12 hours</div></div>
               <div className="chart-caption">Composite risk and rainfall intensity move together in this scenario.</div>
-              <div className="chart-wrap"><ResponsiveContainer width="100%" height="100%"><AreaChart data={data.chart} margin={{ top: 8, right: 14, left: -15, bottom: 0 }}><defs><linearGradient id="riskFill" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor={data.color} stopOpacity={.28} /><stop offset="95%" stopColor={data.color} stopOpacity={0} /></linearGradient></defs><CartesianGrid vertical={false} /><XAxis dataKey="time" tickLine={false} axisLine={false} /><YAxis domain={[0, 160]} tickLine={false} axisLine={false} /><Tooltip contentStyle={{ background: '#153044', border: 'none', borderRadius: 6, fontSize: 10 }} labelStyle={{ color: '#b9d4d2' }} itemStyle={{ color: '#f4e8ce' }} /><Area type="monotone" dataKey="rain" name="Rainfall mm" stroke="#4b83a0" strokeWidth={1.5} fill="none" strokeDasharray="4 4" /><Area type="monotone" dataKey="risk" name="Risk score" stroke={data.color} strokeWidth={2.5} fill="url(#riskFill)" /></AreaChart></ResponsiveContainer></div>
+              <div className="chart-wrap"><ResponsiveContainer width="100%" height="100%"><AreaChart data={data.chart} margin={{ top: 8, right: 14, left: -15, bottom: 0 }}><defs><linearGradient id="riskFill" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor={data.color} stopOpacity={.28} /><stop offset="95%" stopColor={data.color} stopOpacity={0} /></linearGradient></defs><CartesianGrid vertical={false} /><XAxis dataKey="time" tickLine={false} axisLine={false} /><YAxis domain={[0, 160]} tickLine={false} axisLine={false} /><Tooltip contentStyle={{ background: '#1B211E', border: '1px solid #29312D', borderRadius: 6, fontSize: 10 }} labelStyle={{ color: '#9AA39E' }} itemStyle={{ color: '#F1F3F2' }} /><Area type="monotone" dataKey="rain" name="Rainfall mm" stroke="#8AA89C" strokeWidth={1.5} fill="none" strokeDasharray="4 4" /><Area type="monotone" dataKey="risk" name="Risk score" stroke={data.color} strokeWidth={2.5} fill="url(#riskFill)" /></AreaChart></ResponsiveContainer></div>
             </section>
 
             <section className="panel ai-panel" data-testid="panel-ai-analysis">
@@ -503,20 +503,20 @@ function Home() {
 
           <section className="trend-grid" aria-label="Signal trends">
             {[
-              { key: 'rain' as const, label: 'Rainfall trend', unit: 'mm/hr', color: '#2e8c91' },
-              { key: 'river' as const, label: 'River level trend', unit: 'm', color: '#4b83a0' },
-              { key: 'soil' as const, label: 'Soil moisture trend', unit: '%', color: '#a97829' },
+              { key: 'rain' as const, label: 'Rainfall trend', unit: 'mm/hr', color: '#D99A3D' },
+              { key: 'river' as const, label: 'River level trend', unit: 'm', color: '#8AA89C' },
+              { key: 'soil' as const, label: 'Soil moisture trend', unit: '%', color: '#B8A97D' },
             ].map((trend) => (
               <div className="panel mini-trend" key={trend.key}>
                 <div className="mini-trend-head"><span>{trend.label}</span><b>{trend.unit}</b></div>
-                <div className="mini-trend-chart"><ResponsiveContainer width="100%" height="100%"><LineChart data={trendData}><CartesianGrid vertical={false} /><XAxis dataKey="time" hide /><YAxis hide domain={['auto', 'auto']} /><Tooltip contentStyle={{ background: '#153044', border: 'none', borderRadius: 6, fontSize: 10 }} /><Line type="monotone" dataKey={trend.key} stroke={trend.color} strokeWidth={2.3} dot={false} /></LineChart></ResponsiveContainer></div>
+                <div className="mini-trend-chart"><ResponsiveContainer width="100%" height="100%"><LineChart data={trendData}><CartesianGrid vertical={false} /><XAxis dataKey="time" hide /><YAxis hide domain={['auto', 'auto']} /><Tooltip contentStyle={{ background: '#1B211E', border: '1px solid #29312D', borderRadius: 6, fontSize: 10 }} /><Line type="monotone" dataKey={trend.key} stroke={trend.color} strokeWidth={2.3} dot={false} /></LineChart></ResponsiveContainer></div>
               </div>
             ))}
           </section>
 
           <section className="panel table-panel" id="villages">
             <div className="panel-head"><div><div className="panel-kicker">Exposure register / demo villages</div><h2 className="panel-title">Villages &amp; response status</h2><div className="panel-note">{totalPeople} residents across four monitored settlements</div></div><div className="table-head-actions"><button type="button" className="outline-btn" data-testid="button-export-register" onClick={() => showFeedback('Exposure register prepared for local download.')}><Download size={13} /> Export register</button><button type="button" className="solid-btn" data-testid="button-shelter-plan" onClick={() => showFeedback('Shelter plan opened: Ridgeview Community Hall, 1,450 capacity.')}><LifeBuoy size={13} /> Shelter plan</button></div></div>
-            <div className="table-scroll"><table className="village-table"><thead><tr><th>Settlement</th><th>Residents</th><th>Water level</th><th>Status</th><th>Response window</th></tr></thead><tbody>{data.villages.map((village) => <tr key={village.id} data-testid={`row-village-${village.id}`}><td><div className="village-name">{village.name}</div><div className="village-id">{village.id}</div></td><td className="people">{village.people}</td><td><div className="progress-line" style={{ '--row-color': village.status === 'High risk' ? '#ca5045' : village.status === 'Watch' ? '#b67b1b' : '#328d74' } as CSSProperties}><i style={{ width: `${village.water}%` }} /></div><div className="village-id">{village.water}% threshold</div></td><td><span className={`status-pill ${statusClass(village.status)}`}>{village.status}</span></td><td className="people">{village.eta}</td></tr>)}</tbody></table></div>
+            <div className="table-scroll"><table className="village-table"><thead><tr><th>Settlement</th><th>Residents</th><th>Water level</th><th>Status</th><th>Response window</th></tr></thead><tbody>{data.villages.map((village) => <tr key={village.id} data-testid={`row-village-${village.id}`}><td><div className="village-name">{village.name}</div><div className="village-id">{village.id}</div></td><td className="people">{village.people}</td><td><div className="progress-line" style={{ '--row-color': village.status === 'High risk' ? '#E05252' : village.status === 'Watch' ? '#E0A83E' : '#4CAF72' } as CSSProperties}><i style={{ width: `${village.water}%` }} /></div><div className="village-id">{village.water}% threshold</div></td><td><span className={`status-pill ${statusClass(village.status)}`}>{village.status}</span></td><td className="people">{village.eta}</td></tr>)}</tbody></table></div>
           </section>
 
           <div className="bottom-grid">
